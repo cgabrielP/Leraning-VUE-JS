@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hola mundo</title>
+</head>
+
+<body>
+    <div id="app">
+        Contador: {{contador}}
+        <button type="button" v-on:click="stopInterval">{{btnMessage}}</button>
+    </div>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script>
+        const example = {
+            data() {
+                return {
+                    contador: 0,
+                    interval: null,
+                    flag: false,
+                    btnMessage:'Stop'
+                }
+            },
+            mounted() {
+                this.interval = setInterval(() => {
+                    this.contador++;
+                }, 1000)
+                this.flag = true;
+                
+            },
+            methods:
+            {
+                stopInterval() {
+                    if (this.flag) {
+                        clearInterval(this.interval);
+                        this.flag = false
+                        this.btnMessage='Go!'
+                    } else {
+                        this.interval = setInterval(() => {
+                            this.contador++;
+                        }, 1000)
+                        this.flag = true;
+                        this.btnMessage='Stop'
+                    }
+                }
+            }
+        }
+        let dev = Vue.createApp(example).mount('#app')
+    </script>
+</body>
+
+</html>
