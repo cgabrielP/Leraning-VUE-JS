@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hola mundo</title>
+</head>
+
+<body>
+    <div id="app1">
+        <label>Ingresa tu nombre</label>
+            <input type="text" v-model="nombre" >
+        <h4>Bienvenido {{nombre}}</h4>
+        <select v-model="fruits">
+            <option value="Uva">Uva</option>
+            <option value="Pera">Pera</option>
+            <option value="Manzana">Manzana</option>
+        </select>
+        <p>Seleccionaste {{fruits}} </p>
+        <input type="checkbox" v-model='activo'>
+
+
+
+        <br>
+        <label v-bind:title="titulo">Learning</label>
+        <button v-on:click="showImage('graf.png')">grafico</button>
+        <button v-on:click="showImage('flyer.png')">flyer</button>
+        <hr>
+        <img v-bind:src="imagen" alt="">
+    </div>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script>
+        const example1 = {
+            data() {
+                return {
+                   nombre:'',
+                   fruits:'selecciona una',
+                   activo:'true',
+                   titulo:'Titulo prueba',
+                   imagen:''
+                }
+            },
+            methods:{
+                showImage(image)
+                {
+                    this.imagen=image
+                }
+            }
+        }
+        let dev = Vue.createApp(example1).mount('#app1')
+    </script>
+</body>
+
+</html>
