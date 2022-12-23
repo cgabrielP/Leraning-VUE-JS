@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hola mundo</title>
+</head>
+
+<body>
+    <div id="app1">
+        <ul>
+            <li v-for="fruta in frutasID" v-bind:key="frutasID">{{fruta.nombre}} </li>
+        </ul>
+        <input type="text" v-model="nombre">
+        <button v-on:click="addFruit(1, nombre)">Añade fruta</button>
+    </div>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script>
+        const example1 = {
+            data() {
+                return {
+                    nombre:'',
+                    frutas:['Pera','Manzana','Uva'],
+                    frutasID:[
+                        {
+                            id:1,
+                            nombre:'Pera'
+                        },
+                        {
+                            id:2,
+                            nombre:'Manzana'
+                        },
+                        {
+                            id:3,
+                            nombre:'Uva'
+                        }
+                    ]
+                }
+            },
+            mounted()
+            {
+                console.log(this.frutasID)
+            },
+            methods:
+            {
+                addFruit(id, nombre){
+                    this.frutasID.push({id, nombre})
+                }
+            }
+        
+        }
+        let dev = Vue.createApp(example1).mount('#app1')
+    </script>
+</body>
+
+</html>
