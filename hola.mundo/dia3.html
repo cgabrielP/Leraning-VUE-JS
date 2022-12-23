@@ -10,46 +10,77 @@
 
 <body>
     <div id="app1">
-        <ul>
-            <li v-for="fruta in frutasID" v-bind:key="frutasID">{{fruta.nombre}} </li>
-        </ul>
         <input type="text" v-model="nombre">
         <button v-on:click="addFruit(1, nombre)">Añade fruta</button>
+        <ul>
+            <li v-for="(fruta, index) in frutasID" v-bind:key="frutasID">{{index}}-{{fruta.nombre}}
+                <ul>
+                    <li v-for="(pais, index) in fruta.paisesOrigen">
+                        Se encuentra en -{{pais.pais}}
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <hr>
+        <ul>
+            <li v-for="numero in 10">
+                {{numero/2}}
+            </li>
+        </ul>
     </div>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script>
         const example1 = {
             data() {
                 return {
-                    nombre:'',
-                    frutas:['Pera','Manzana','Uva'],
-                    frutasID:[
+                    nombre: '',
+                    frutasID: [
                         {
-                            id:1,
-                            nombre:'Pera'
+                            id: 1,
+                            nombre: 'Pera',
+                            paisesOrigen: [
+                                {
+                                    idPais: 1,
+                                    pais: 'Chile'
+                                },
+                                {
+                                    idPais: 2,
+                                    pais: 'Peru'
+                                }
+                            ]
                         },
                         {
-                            id:2,
-                            nombre:'Manzana'
+                            id: 2,
+                            nombre: 'Manzana',
+                            paisesOrigen: [
+                                {
+                                    idPais: 3,
+                                    pais: 'Brasil'
+                                },
+                                {
+                                    idPais: 4,
+                                    pais: 'USA'
+                                }
+                            ]
                         },
                         {
-                            id:3,
-                            nombre:'Uva'
+                            id: 3,
+                            nombre: 'Uva',
+                            paisesOrigen: null
                         }
                     ]
                 }
             },
-            mounted()
-            {
+            mounted() {
                 console.log(this.frutasID)
             },
             methods:
             {
-                addFruit(id, nombre){
-                    this.frutasID.push({id, nombre})
+                addFruit(id, nombre) {
+                    this.frutasID.push({ id, nombre })
                 }
             }
-        
+
         }
         let dev = Vue.createApp(example1).mount('#app1')
     </script>
