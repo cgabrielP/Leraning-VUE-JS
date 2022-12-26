@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hola mundo</title>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+</head>
+
+<body>
+
+    <div id="app">
+        <button class="btn indigo darken-4" v-on:click="(contador++)">Click</button>
+        {{contador}}
+        <hr>
+        <button class="btn indigo darken-4" @mouseover="(flag=true)" @mouseout="(flag=false)">Estado
+            mouse</button>
+        {{flag}}
+        <hr>
+
+
+        <select v-on:change="changeImage($event)" class="browser-default">
+            <option value="mango.jpg">mango</option>
+            <option value="fresa.jpg">fresa</option>
+        </select>
+        <img :src='imagen'>
+    </div>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script>
+        //mas eventos keydown, load, keyup
+        const example = {
+            data() {
+                return {
+                    contador: 0,
+                    flag: false,
+                    imagen: ''
+                }
+            },
+
+            methods:
+            {
+                changeImage(event) {
+                    this.imagen = event.target.value
+                }
+            }
+        }
+        let dev = Vue.createApp(example).mount('#app')
+    </script>
+</body>
+
+</html>

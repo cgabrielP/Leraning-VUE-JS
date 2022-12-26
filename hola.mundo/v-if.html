@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hola mundo</title>
+</head>
+
+<body>
+    <div id="app">
+        <h5 v-if="(numero1 > numero2)">el numero {{numero1}} es mayor que {{numero2}} </h5>
+        <h5 v-else-if="(numero1 == numero2)">el numero {{numero1}} es igual que {{numero2}} </h5>
+        <h5 v-else>el numero {{numero1}} es menor que {{numero2}} </h5>
+
+        <ul>
+
+            <li v-for="post in posts"> 
+                <label v-if="(post.id %2==0)">Es par</label>
+                <label v-else>Es impar</label>
+                {{post.id}}-{{post.title}}
+            </li>
+        </ul>
+    </div>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script>
+        const example = {
+            data() {
+                return {
+                    numero1: 4,
+                    numero2: 5,
+                    postsPares: [],
+                    posts: []
+                }
+            },
+
+            methods:
+            {
+                getData(url) {
+                    fetch(url)
+                        .then(response => response.json())
+                        .then(
+                            data => {
+                                this.posts = data;
+                                this.postsPares = data.filter(el => (el.id % 2 == 0))
+                            })
+                },
+
+            },
+            mounted() {
+                this.getData('https://jsonplaceholder.typicode.com/posts')
+            },
+        }
+        let dev = Vue.createApp(example).mount('#app')
+    </script>
+</body>
+
+</html>
