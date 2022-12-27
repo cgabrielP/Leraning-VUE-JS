@@ -22,6 +22,7 @@
                 {{post.id}}-{{post.title}}
             </li>
         </ul>
+        <img src="mango.jpg" v-show="mostrar"><!-- solo cambia el css -->
     </div>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script>
@@ -31,7 +32,8 @@
                     numero1: 4,
                     numero2: 5,
                     postsPares: [],
-                    posts: []
+                    posts: [],
+                    mostrar: false
                 }
             },
 
